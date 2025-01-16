@@ -1,5 +1,5 @@
-p1:
-  hostname: p1
+provider:
+  hostname: provider
   platform: sros
   groups:
   - sros
@@ -7,35 +7,35 @@ p1:
     site: provider
     role: core
 
-dc1gw1:
-  hostname: dc1gw1
+dc1pe1:
+  hostname: dc1pe1
   platform: sros
   groups:
   - sros
   data:
     site: wan1
-    role: dcgw
+    role: pe
 
-dc1gw2:
-  hostname: dc1gw2
+dc1pe2:
+  hostname: dc1pe2
   platform: sros
   groups:
   - sros
   data:
     site: wan1
-    role: dcgw
+    role: pe
 
-dc2gw1:
-  hostname: dc2gw1
+dc2pe1:
+  hostname: dc2pe1
   platform: sros
   groups:
   - sros
   data:
     site: wan1
-    role: dcgw
+    role: pe
 
-pe3:
-  hostname: pe3
+pe30:
+  hostname: pe30
   platform: sros
   groups:
   - sros
