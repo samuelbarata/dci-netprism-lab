@@ -18,7 +18,7 @@ topology:
     juniper_vjunosswitch:
       image: vrnetlab/juniper_vjunos-switch:23.2R1.14
 
-  nodes: # https://github.com/srl-labs/containerlab/blob/663511ec705584a31a6bd791a37d9bec263fa617/types/node_definition.go#L16
+  nodes:
     ### CORE ###
     p1:
       kind: vr-sros

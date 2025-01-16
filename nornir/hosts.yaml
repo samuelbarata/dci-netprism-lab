@@ -1,0 +1,125 @@
+p1:
+  hostname: p1
+  platform: sros
+  groups:
+  - sros
+  data:
+    site: provider
+    role: core
+
+dc1gw1:
+  hostname: dc1gw1
+  platform: sros
+  groups:
+  - sros
+  data:
+    site: wan1
+    role: dcgw
+
+dc1gw2:
+  hostname: dc1gw2
+  platform: sros
+  groups:
+  - sros
+  data:
+    site: wan1
+    role: dcgw
+
+dc2gw1:
+  hostname: dc2gw1
+  platform: sros
+  groups:
+  - sros
+  data:
+    site: wan1
+    role: dcgw
+
+pe3:
+  hostname: pe3
+  platform: sros
+  groups:
+  - sros
+  data:
+    site: wan2
+    role: pe
+
+spine1dc1:
+  hostname: spine1dc1
+  platform: srlinux
+  groups:
+  - srl
+  data:
+    site: dc1
+    role: spine
+
+spine2dc1:
+  hostname: spine2dc1
+  platform: srlinux
+  groups:
+  - srl
+  data:
+    site: dc1
+    role: spine
+
+spine1dc2:
+  hostname: spine1dc2
+  platform: srlinux
+  groups:
+  - srl
+  data:
+    site: dc2
+    role: spine
+
+leaf1dc1:
+  hostname: leaf1dc1
+  platform: srlinux
+  groups:
+  - srl
+  data:
+    site: dc1
+    role: leaf
+
+leaf2dc1:
+  hostname: leaf2dc1
+  platform: srlinux
+  groups:
+  - srl
+  data:
+    site: dc1
+    role: leaf
+
+leaf3dc1:
+  hostname: leaf3dc1
+  platform: srlinux
+  groups:
+  - srl
+  data:
+    site: dc1
+    role: leaf
+
+leaf4dc1:
+  hostname: leaf4dc1
+  platform: junos
+  groups:
+  - junos
+  data:
+    site: dc1
+    role: leaf
+
+leaf1dc2:
+  hostname: leaf1dc2
+  platform: srlinux
+  groups:
+  - srl
+  data:
+    site: dc2
+    role: leaf
+
+leaf2dc2:
+  hostname: leaf2dc2
+  platform: srlinux
+  groups:
+  - srl
+  data:
+    site: dc2
+    role: leaf

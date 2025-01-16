@@ -1,0 +1,31 @@
+global:
+  data:
+    domain: clab
+
+srl:
+  groups: [global]
+  platform: srlinux
+  connection_options:
+    napalm:
+      username: admin
+      password: NokiaSrl1!
+
+sros:
+  groups: [global]
+  platform: sros
+  connection_options:
+    napalm:
+      username: admin
+      password: admin
+
+junos:
+  groups: [global]
+  platform: junos
+  connection_options:
+    napalm:
+      username: admin
+      password: admin@123
+
+linux:
+  groups: [global]
+  platform: linux
