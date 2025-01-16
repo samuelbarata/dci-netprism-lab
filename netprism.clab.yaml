@@ -1,0 +1,270 @@
+name: netprism-demo
+prefix: ""
+
+mgmt:
+  network: samuel
+  ipv4-subnet: 172.80.80.0/24
+
+topology:
+  kinds:
+    vr-sros:
+      image: ext.cr.netdevops.me:8443/sros/nokia_sros:24.7.R1
+      license: /opt/nokia/sros/license-sros20.txt
+    srl:
+      image: ghcr.io/nokia/srlinux:24.10.1
+      type: ixrd2l
+    linux:
+      image: ghcr.io/hellt/network-multitool
+    juniper_vjunosswitch:
+      image: vrnetlab/juniper_vjunos-switch:23.2R1.14
+
+  nodes: # https://github.com/srl-labs/containerlab/blob/663511ec705584a31a6bd791a37d9bec263fa617/types/node_definition.go#L16
+    ### CORE ###
+    p1:
+      kind: vr-sros
+      group: core
+      mgmt-ipv4: 172.80.80.91
+      labels:
+        site: provider
+        role: core
+    ### DCGWS ###
+    dc1gw1:
+      kind: vr-sros
+      group: dcgw
+      mgmt-ipv4: 172.80.80.51
+      type: sr-1
+      labels:
+        site: wan1
+        role: dcgw
+    dc1gw2:
+      kind: vr-sros
+      group: dcgw
+      mgmt-ipv4: 172.80.80.52
+      type: sr-1
+      labels:
+        site: wan1
+        role: dcgw
+    dc2gw1:
+      kind: vr-sros
+      group: dcgw
+      mgmt-ipv4: 172.80.80.53
+      type: sr-1
+      labels:
+        site: wan1
+        role: dcgw
+    pe3:
+      kind: vr-sros
+      mgmt-ipv4: 172.80.80.54
+      type: sr-1
+      labels:
+        site: wan2
+        role: pe
+    # ### SPINES ###
+    spine1dc1:
+      kind: srl
+      type: ixrd3l
+      group: spine
+      mgmt-ipv4: 172.80.80.21
+      labels:
+        site: dc1
+        role: spine
+    spine2dc1:
+      kind: srl
+      type: ixrd3l
+      group: spine
+      mgmt-ipv4: 172.80.80.22
+      labels:
+        site: dc1
+        role: spine
+    spine1dc2:
+      kind: srl
+      type: ixrd3l
+      group: spine
+      mgmt-ipv4: 172.80.80.23
+      labels:
+        site: dc2
+        role: spine
+    ### LEAFS ###
+    leaf1dc1:
+      kind: srl
+      mgmt-ipv4: 172.80.80.11
+      group: leaf
+      labels:
+        site: dc1
+        role: leaf
+    leaf2dc1:
+      kind: srl
+      mgmt-ipv4: 172.80.80.12
+      group: leaf
+      labels:
+        site: dc1
+        role: leaf
+    leaf3dc1:
+      kind: srl
+      mgmt-ipv4: 172.80.80.13
+      group: leaf
+      labels:
+        site: dc1
+        role: leaf
+    leaf4dc1:
+      kind: juniper_vjunosswitch
+      mgmt-ipv4: 172.80.80.14
+      group: leaf
+      labels:
+        site: dc1
+        role: leaf
+    leaf1dc2:
+      kind: srl
+      mgmt-ipv4: 172.80.80.15
+      group: leaf
+      labels:
+        site: dc2
+        role: leaf
+    leaf2dc2:
+      kind: srl
+      mgmt-ipv4: 172.80.80.16
+      group: leaf
+      labels:
+        site: dc2
+        role: leaf
+    ### CLIENTS ###
+    c1dc1:
+      kind: linux
+      mgmt-ipv4: 172.80.80.31
+      exec:
+        - ip address add 10.128.1.1/24 dev eth1
+        - ip -6 address add 2002::10:128:1:1/96 dev eth1
+      group: server
+      labels:
+        site: dc1
+        role: server
+    c2dc1:
+      kind: linux
+      mgmt-ipv4: 172.80.80.32
+      exec:
+        - ip address add 10.128.2.2/24 dev eth1
+        - ip -6 address add 2002::10:128:2:2/96 dev eth1
+      group: server
+      labels:
+        site: dc1
+        role: server
+    c3dc1:
+      kind: linux
+      mgmt-ipv4: 172.80.80.33
+      exec:
+        - ip address add 10.128.1.3/24 dev eth1
+        - ip -6 address add 2002::10:128:1:3/96 dev eth1
+      group: server
+      labels:
+        site: dc1
+        role: server
+    c4dc1:
+      kind: linux
+      mgmt-ipv4: 172.80.80.34
+      exec:
+        - ip address add 10.128.1.4/24 dev eth1
+        - ip -6 address add 2002::10:128:1:4/96 dev eth1
+      group: server
+      labels:
+        site: dc1
+        role: server
+    c5dc1:
+      kind: linux
+      mgmt-ipv4: 172.80.80.35
+      exec:
+        - ip address add 10.128.2.5/24 dev eth1
+        - ip -6 address add 2002::10:128:2:5/96 dev eth1
+      group: server
+      labels:
+        site: dc1
+        role: server
+    c6:
+      kind: linux
+      mgmt-ipv4: 172.80.80.36
+      exec:
+        - ip address add 10.128.1.6/24 dev eth1
+        - ip -6 address add 2002::10:128:1:6/96 dev eth1
+      group: server
+      labels:
+        site: pe3
+        role: server
+    c7:
+      kind: linux
+      mgmt-ipv4: 172.80.80.37
+      exec:
+        - ip address add 10.128.2.7/24 dev eth1
+        - ip -6 address add 2002::10:128:2:7/96 dev eth1
+      group: server
+      labels:
+        site: pe3
+        role: server
+    c8dc2:
+      kind: linux
+      mgmt-ipv4: 172.80.80.38
+      exec:
+        - ip address add 10.128.1.8/24 dev eth1
+        - ip -6 address add 2002::10:128:1:8/96 dev eth1
+      group: server
+      labels:
+        site: dc2
+        role: server
+    c9dc2:
+      kind: linux
+      mgmt-ipv4: 172.80.80.39
+      exec:
+        - ip address add 10.128.2.9/24 dev eth1
+        - ip -6 address add 2002::10:128:2:9/96 dev eth1
+      group: server
+      labels:
+        site: dc2
+        role: server
+
+
+
+  links:
+    # clients ethX (1+)
+    # SR OS ethX (1+)
+    # SR Linux e1-1 or breakouts: ethernet-1/3/1 (1+)
+    # Juniper et-0/0/X (or ge-0/0/X, xe-0/0/X) (0+)
+    ############## WAN 1 ##############
+    ## DCGW - CORE ##
+    - endpoints: ["dc1gw1:eth3", "p1:eth1"]
+    - endpoints: ["dc1gw2:eth3", "p1:eth2"]
+    - endpoints: ["dc2gw1:eth3", "p1:eth3"]
+    - endpoints: ["pe3:eth1", "p1:eth4"]
+
+    ##############  DC 1 ##############
+    ## DCGW - SPINE ##
+    - endpoints: ["dc1gw1:eth1", "spine1dc1:e1-31"]
+    - endpoints: ["dc1gw2:eth1", "spine1dc1:e1-32"]
+    - endpoints: ["dc1gw1:eth2", "spine2dc1:e1-31"]
+    - endpoints: ["dc1gw2:eth2", "spine2dc1:e1-32"]
+    ## SPINE - LEAF ##
+    - endpoints: ["spine1dc1:e1-1", "leaf1dc1:e1-50"]
+    - endpoints: ["spine1dc1:e1-2", "leaf2dc1:e1-50"]
+    - endpoints: ["spine1dc1:e1-3", "leaf3dc1:e1-50"]
+    - endpoints: ["spine1dc1:e1-4", "leaf4dc1:et-0/0/50"]
+    - endpoints: ["spine2dc1:e1-1", "leaf1dc1:e1-49"]
+    - endpoints: ["spine2dc1:e1-2", "leaf2dc1:e1-49"]
+    - endpoints: ["spine2dc1:e1-3", "leaf3dc1:e1-49"]
+    - endpoints: ["spine2dc1:e1-4", "leaf4dc1:et-0/0/49"]
+    ## CLIENT - LEAF ##
+    - endpoints: ["leaf1dc1:e1-1", "c1dc1:eth1"]
+    - endpoints: ["leaf2dc1:e1-1", "c2dc1:eth1"]
+    - endpoints: ["leaf3dc1:e1-1", "c3dc1:eth1"]
+    - endpoints: ["leaf4dc1:et-0/0/0", "c4dc1:eth1"]
+    - endpoints: ["leaf4dc1:et-0/0/1", "c5dc1:eth1"]
+    
+    ##############  DC 2 ##############
+    ## DCGW - SPINE ##
+    - endpoints: ["dc2gw1:eth1", "spine1dc2:e1-31"]
+    ## SPINE - LEAF ##
+    - endpoints: ["spine1dc2:e1-1", "leaf1dc2:e1-50"]
+    - endpoints: ["spine1dc2:e1-2", "leaf2dc2:e1-50"]
+    ## CLIENT - LEAF ##
+    - endpoints: ["leaf1dc2:e1-1", "c8dc2:eth1"]
+    - endpoints: ["leaf2dc2:e1-1", "c9dc2:eth1"]
+
+    ##############  PE 3 ##############
+    - endpoints: ["c6:eth1", "pe3:eth2"]
+    - endpoints: ["c7:eth1", "pe3:eth3"]
