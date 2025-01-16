@@ -227,10 +227,10 @@ topology:
     # Juniper et-0/0/X (or ge-0/0/X, xe-0/0/X) (0+)
     ############## WAN 1 ##############
     ## PE - CORE ##
-    - endpoints: ["dc1pe1:eth3", "p1:eth1"]
-    - endpoints: ["dc1pe2:eth3", "p1:eth2"]
-    - endpoints: ["dc2pe1:eth3", "p1:eth3"]
-    - endpoints: ["pe30:eth1", "p1:eth4"]
+    - endpoints: ["dc1pe1:eth3", "provider:eth1"]
+    - endpoints: ["dc1pe2:eth3", "provider:eth2"]
+    - endpoints: ["dc2pe1:eth3", "provider:eth3"]
+    - endpoints: ["pe30:eth1", "provider:eth4"]
 
     ##############  DC 1 ##############
     ## PE - SPINE ##
