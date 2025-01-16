@@ -32,6 +32,7 @@ topology:
       kind: vr-sros
       group: pe
       mgmt-ipv4: 172.80.80.51
+      startup-config: configs/wan1/dc1pe1.partial.cfg
       type: sr-1
       labels:
         site: wan1
@@ -40,6 +41,7 @@ topology:
       kind: vr-sros
       group: pe
       mgmt-ipv4: 172.80.80.52
+      startup-config: configs/wan1/dc1pe2.partial.cfg
       type: sr-1
       labels:
         site: wan1
@@ -48,6 +50,7 @@ topology:
       kind: vr-sros
       group: pe
       mgmt-ipv4: 172.80.80.53
+      # startup-config: configs/wan1/dc2pe1.partial.cfg
       type: sr-1
       labels:
         site: wan1
@@ -65,6 +68,7 @@ topology:
       type: ixrd3l
       group: spine
       mgmt-ipv4: 172.80.80.21
+      startup-config: configs/dc1/spine1.cfg
       labels:
         site: dc1
         role: spine
@@ -73,6 +77,7 @@ topology:
       type: ixrd3l
       group: spine
       mgmt-ipv4: 172.80.80.22
+      startup-config: configs/dc1/spine2.cfg
       labels:
         site: dc1
         role: spine
@@ -81,6 +86,7 @@ topology:
       type: ixrd3l
       group: spine
       mgmt-ipv4: 172.80.80.23
+      startup-config: configs/dc2/spine1.cfg
       labels:
         site: dc2
         role: spine
@@ -88,6 +94,7 @@ topology:
     leaf1dc1:
       kind: srl
       mgmt-ipv4: 172.80.80.11
+      startup-config: configs/dc1/leaf1.cfg
       group: leaf
       labels:
         site: dc1
@@ -95,6 +102,7 @@ topology:
     leaf2dc1:
       kind: srl
       mgmt-ipv4: 172.80.80.12
+      startup-config: configs/dc1/leaf2.cfg
       group: leaf
       labels:
         site: dc1
@@ -102,12 +110,14 @@ topology:
     leaf3dc1:
       kind: srl
       mgmt-ipv4: 172.80.80.13
+      startup-config: configs/dc1/leaf3.cfg
       group: leaf
       labels:
         site: dc1
         role: leaf
     leaf4dc1:
       kind: juniper_vjunosswitch
+      # startup-config: configs/dc1/leaf4.cfg
       mgmt-ipv4: 172.80.80.14
       group: leaf
       labels:
@@ -116,6 +126,7 @@ topology:
     leaf1dc2:
       kind: srl
       mgmt-ipv4: 172.80.80.15
+      startup-config: configs/dc2/leaf1.cfg
       group: leaf
       labels:
         site: dc2
@@ -123,6 +134,7 @@ topology:
     leaf2dc2:
       kind: srl
       mgmt-ipv4: 172.80.80.16
+      startup-config: configs/dc2/leaf1.cfg
       group: leaf
       labels:
         site: dc2
