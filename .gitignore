@@ -1,3 +1,6 @@
 *.bak
 .DS_Store
 clab-*
+*.log
+.tmp
+*.tmp

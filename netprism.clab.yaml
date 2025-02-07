@@ -30,6 +30,7 @@ topology:
       kind: vr-sros
       group: core
       mgmt-ipv4: 172.80.80.91
+      # startup-config: configs/provider/provider.partial.cfg
       labels:
         site: provider
         role: core
@@ -152,6 +153,15 @@ topology:
       exec:
         - ip address add 10.128.1.1/24 dev eth1
         - ip -6 address add 2002::10:128:1:1/96 dev eth1
+        - iperf3 -s -p 5201 -D > iperf1_1.log
+        - iperf3 -s -p 5202 -D > iperf1_2.log
+        - iperf3 -s -p 5203 -D > iperf1_3.log
+        - iperf3 -s -p 5204 -D > iperf1_4.log
+        - iperf3 -s -p 5205 -D > iperf1_5.log
+        - iperf3 -s -p 5206 -D > iperf1_6.log
+        - iperf3 -s -p 5207 -D > iperf1_7.log
+        - iperf3 -s -p 5208 -D > iperf1_8.log
+        - iperf3 -s -p 5209 -D > iperf1_9.log
       group: server
       labels:
         site: dc1
@@ -162,6 +172,15 @@ topology:
       exec:
         - ip address add 10.128.2.2/24 dev eth1
         - ip -6 address add 2002::10:128:2:2/96 dev eth1
+        - iperf3 -s -p 5201 -D > iperf2_1.log
+        - iperf3 -s -p 5202 -D > iperf2_2.log
+        - iperf3 -s -p 5203 -D > iperf2_3.log
+        - iperf3 -s -p 5204 -D > iperf2_4.log
+        - iperf3 -s -p 5205 -D > iperf2_5.log
+        - iperf3 -s -p 5206 -D > iperf2_6.log
+        - iperf3 -s -p 5207 -D > iperf2_7.log
+        - iperf3 -s -p 5208 -D > iperf2_8.log
+        - iperf3 -s -p 5209 -D > iperf2_9.log
       group: server
       labels:
         site: dc1
@@ -200,8 +219,11 @@ topology:
       kind: linux
       mgmt-ipv4: 172.80.80.36
       exec:
-        - ip address add 10.128.1.6/24 dev eth1
-        - ip -6 address add 2002::10:128:1:6/96 dev eth1
+        - ip link add link eth1 name eth1.1 type vlan id 1
+        - ifconfig eth1 down
+        - ifconfig eth1 up
+        - ip address add 10.128.1.6/24 dev eth1.1
+        - ip -6 address add 2002::10:128:1:6/96 dev eth1.1
       group: server
       labels:
         site: dc1
