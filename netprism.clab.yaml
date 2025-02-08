@@ -257,8 +257,27 @@ topology:
       labels:
         site: dc2
         role: server
-
-
+    c10dc1:
+      kind: linux
+      mgmt-ipv4: 172.80.80.40
+      exec:
+        - ip link add bond0 type bond mode 802.3ad
+        - ip link set dev eth1 down
+        - ip link set dev eth2 down
+        - ip link set dev bond0 down
+        - ip link set eth1 master bond0
+        - ip link set eth2 master bond0
+        - ip link add link bond0 name bond0.1 type vlan id 1
+        - ifconfig bond0 up
+        - ip link set dev eth1 up
+        - ip link set dev eth2 up
+        - ip address add 10.128.1.10/24 dev bond0.1
+        - ip -6 address add 2002::10:128:1:10/96 dev bond0.1
+        - ip link set bond0.1 up
+      group: server
+      labels:
+        site: dc1
+        role: server
 
   links:
     # clients ethX (1+)
@@ -293,6 +312,8 @@ topology:
     - endpoints: ["leaf3dc1:e1-1", "c3dc1:eth1"]
     - endpoints: ["leaf4dc1:e1-1", "c4dc1:eth1"]
     - endpoints: ["leaf4dc1:e1-2", "c5dc1:eth1"]
+    - endpoints: ["leaf1dc1:e1-2", "c10dc1:eth1"]
+    - endpoints: ["leaf2dc1:e1-2", "c10dc1:eth2"]
     ## CLIENT - DCGW ##
     - endpoints: ["c6dc1:eth1", "dc1dcgw1:eth4"]
 
