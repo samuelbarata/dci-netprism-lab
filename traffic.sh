@@ -23,6 +23,7 @@ startAll() {
     docker exec c6dc1 iperf3 -c 2002::10:128:1:1 -t 10000 -i 1 -p 5204 -B 2002::10:128:1:6 -P 32 -b 125K -M 1400 > /dev/null &
     docker exec c8dc2 iperf3 -c 2002::10:128:1:1 -t 10000 -i 1 -p 5205 -B 2002::10:128:1:8 -P 32 -b 125K -M 1400 > /dev/null &
     docker exec c9dc2 iperf3 -c 2002::10:128:2:2 -t 10000 -i 1 -p 5206 -B 2002::10:128:2:9 -P 32 -b 125K -M 1400 > /dev/null &
+    docker exec c10dc1 iperf3 -c 2002::10:128:1:1 -t 10000 -i 1 -p 5207 -B 2002::10:128:1:8 -P 32 -b 125K -M 1400 > /dev/null &
 }
 
 pingAll() {
@@ -34,6 +35,7 @@ pingAll() {
     docker exec c6dc1 ping -c 10 -W 1 -6 -A 2002::10:128:1:1
     docker exec c8dc2 ping -c 10 -W 1 -6 -A 2002::10:128:1:1
     docker exec c9dc2 ping -c 10 -W 1 -6 -A 2002::10:128:2:2
+    docker exec c10dc1 ping -c 10 -W 1 -6 -A 2002::10:128:1:1
 }
 
 stopAll() {
@@ -44,6 +46,7 @@ stopAll() {
     docker exec c6dc1 pkill iperf3
     docker exec c8dc2 pkill iperf3
     docker exec c9dc2 pkill iperf3
+    docker exec c10dc1 pkill iperf3
 }
 
 

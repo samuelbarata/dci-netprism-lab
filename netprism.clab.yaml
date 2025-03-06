@@ -30,7 +30,7 @@ topology:
       kind: vr-sros
       group: core
       mgmt-ipv4: 172.80.80.91
-      # startup-config: configs/provider/provider.partial.cfg
+      startup-config: configs/provider/provider.partial.cfg
       labels:
         site: provider
         role: core
