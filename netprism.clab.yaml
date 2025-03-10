@@ -26,11 +26,43 @@ topology:
 
   nodes:
     ### CORE ###
-    provider:
+    provider1:
       kind: vr-sros
       group: core
       mgmt-ipv4: 172.80.80.91
-      startup-config: configs/provider/provider.partial.cfg
+      startup-config: configs/provider/provider1.partial.cfg
+      labels:
+        site: provider
+        role: core
+    provider2:
+      kind: vr-sros
+      group: core
+      mgmt-ipv4: 172.80.80.92
+      startup-config: configs/provider/provider2.partial.cfg
+      labels:
+        site: provider
+        role: core
+    provider3:
+      kind: vr-sros
+      group: core
+      mgmt-ipv4: 172.80.80.93
+      startup-config: configs/provider/provider3.partial.cfg
+      labels:
+        site: provider
+        role: core
+    provider4:
+      kind: vr-sros
+      group: core
+      mgmt-ipv4: 172.80.80.94
+      startup-config: configs/provider/provider4.partial.cfg
+      labels:
+        site: provider
+        role: core
+    provider5:
+      kind: vr-sros
+      group: core
+      mgmt-ipv4: 172.80.80.95
+      startup-config: configs/provider/provider5.partial.cfg
       labels:
         site: provider
         role: core
@@ -285,11 +317,17 @@ topology:
     # SR Linux e1-1 or breakouts: ethernet-1/3/1 (1+)
     # Juniper et-0/0/X (or ge-0/0/X, xe-0/0/X) (0+)
     ############## WAN 1 ##############
+    ## CORE - CORE ##
+    - endpoints: ["provider1:eth1", "provider2:eth2"]
+    - endpoints: ["provider2:eth1", "provider3:eth2"]
+    - endpoints: ["provider3:eth1", "provider4:eth2"]
+    - endpoints: ["provider4:eth1", "provider5:eth2"]
+    - endpoints: ["provider5:eth1", "provider1:eth2"]
     ## DCGW - CORE ##
-    - endpoints: ["dc1dcgw1:eth3", "provider:eth1"]
-    - endpoints: ["dc1dcgw2:eth3", "provider:eth2"]
-    - endpoints: ["dc2dcgw1:eth3", "provider:eth3"]
-    - endpoints: ["pe30:eth1", "provider:eth4"]
+    - endpoints: ["dc1dcgw1:eth3", "provider2:eth3"]
+    - endpoints: ["dc1dcgw2:eth3", "provider3:eth3"]
+    - endpoints: ["dc2dcgw1:eth3", "provider5:eth3"]
+    - endpoints: ["pe30:eth1", "provider4:eth3"]
 
     ##############  DC 1 ##############
     ## DCGW - SPINE ##
