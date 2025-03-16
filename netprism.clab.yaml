@@ -8,8 +8,10 @@ mgmt:
 topology:
   kinds:
     vr-sros:
-      image: ext.cr.netdevops.me:8443/sros/nokia_sros:24.7.R1
-      license: /opt/nokia/sros/license-sros20.txt
+      image: vrnetlab/nokia_sros:24.7.R2
+      license: /opt/nokia/sros/license-sros_R24.txt
+      # image: ext.cr.netdevops.me:8443/sros/nokia_sros:24.7.R1
+      # license: /opt/nokia/sros/license-sros20.txt
     srl:
       image: ghcr.io/nokia/srlinux:24.10.1
       type: ixrd2l
