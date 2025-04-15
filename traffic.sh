@@ -49,6 +49,9 @@ stopAll() {
     docker exec c10dc1 pkill iperf3
 }
 
+# Packets:
+# docker exec c1dc1 python3 /recieve.py
+# docker exec c3dc1 python3 /send.py 10.128.1.1 ola aa:c1:ab:59:4e:d0
 
 # start traffic
 if [ $1 == "start" ]; then

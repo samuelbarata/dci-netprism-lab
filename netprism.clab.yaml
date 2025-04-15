@@ -16,7 +16,10 @@ topology:
       image: ghcr.io/nokia/srlinux:24.10.1
       type: ixrd2l
     linux:
-      image: ghcr.io/hellt/network-multitool
+      image: samuelbarata/network-multitool:latest
+      binds:
+        - ./send.py:/send.py
+        - ./recieve.py:/recieve.py
     juniper_vjunosswitch:
       image: vrnetlab/juniper_vjunos-switch:23.2R1.14
     juniper_vjunosrouter:
