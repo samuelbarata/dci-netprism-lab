@@ -7,12 +7,10 @@ mgmt:
 
 topology:
   kinds:
-    vr-sros:
+    nokia_sros:
       image: vrnetlab/nokia_sros:24.7.R2
       license: /opt/nokia/sros/license-sros_R24.txt
-      # image: ext.cr.netdevops.me:8443/sros/nokia_sros:24.7.R1
-      # license: /opt/nokia/sros/license-sros20.txt
-    srl:
+    nokia_srlinux:
       image: ghcr.io/nokia/srlinux:24.10.1
       type: ixrd2l
     linux:
@@ -32,7 +30,7 @@ topology:
   nodes:
     ### CORE ###
     provider1:
-      kind: vr-sros
+      kind: nokia_sros
       group: core
       mgmt-ipv4: 172.80.80.91
       startup-config: configs/provider/provider1.partial.cfg
@@ -40,7 +38,7 @@ topology:
         site: provider
         role: core
     provider2:
-      kind: vr-sros
+      kind: nokia_sros
       group: core
       mgmt-ipv4: 172.80.80.92
       startup-config: configs/provider/provider2.partial.cfg
@@ -48,7 +46,7 @@ topology:
         site: provider
         role: core
     provider3:
-      kind: vr-sros
+      kind: nokia_sros
       group: core
       mgmt-ipv4: 172.80.80.93
       startup-config: configs/provider/provider3.partial.cfg
@@ -56,7 +54,7 @@ topology:
         site: provider
         role: core
     provider4:
-      kind: vr-sros
+      kind: nokia_sros
       group: core
       mgmt-ipv4: 172.80.80.94
       startup-config: configs/provider/provider4.partial.cfg
@@ -64,7 +62,7 @@ topology:
         site: provider
         role: core
     provider5:
-      kind: vr-sros
+      kind: nokia_sros
       group: core
       mgmt-ipv4: 172.80.80.95
       startup-config: configs/provider/provider5.partial.cfg
@@ -73,7 +71,7 @@ topology:
         role: core
     ### PE ###
     dc1dcgw1:
-      kind: vr-sros
+      kind: nokia_sros
       group: pe
       mgmt-ipv4: 172.80.80.51
       startup-config: configs/wan1/dc1dcgw1.partial.cfg
@@ -82,7 +80,7 @@ topology:
         site: wan1
         role: pe
     dc1dcgw2:
-      kind: vr-sros
+      kind: nokia_sros
       group: pe
       mgmt-ipv4: 172.80.80.52
       startup-config: configs/wan1/dc1dcgw2.partial.cfg
@@ -91,7 +89,7 @@ topology:
         site: wan1
         role: pe
     dc2dcgw1:
-      kind: vr-sros
+      kind: nokia_sros
       group: pe
       mgmt-ipv4: 172.80.80.53
       startup-config: configs/wan1/dc2dcgw1.partial.cfg
@@ -100,7 +98,7 @@ topology:
         site: wan1
         role: pe
     pe30:
-      kind: vr-sros
+      kind: nokia_sros
       mgmt-ipv4: 172.80.80.54
       type: sr-1
       labels:
@@ -108,7 +106,7 @@ topology:
         role: pe
     # ### SPINES ###
     spine1dc1:
-      kind: srl
+      kind: nokia_srlinux
       type: ixrd3l
       group: spine
       mgmt-ipv4: 172.80.80.21
@@ -117,7 +115,7 @@ topology:
         site: dc1
         role: spine
     spine2dc1:
-      kind: srl
+      kind: nokia_srlinux
       type: ixrd3l
       group: spine
       mgmt-ipv4: 172.80.80.22
@@ -126,7 +124,7 @@ topology:
         site: dc1
         role: spine
     spine1dc2:
-      kind: srl
+      kind: nokia_srlinux
       type: ixrd3l
       group: spine
       mgmt-ipv4: 172.80.80.23
@@ -136,7 +134,7 @@ topology:
         role: spine
     ### LEAFS ###
     leaf1dc1:
-      kind: srl
+      kind: nokia_srlinux
       mgmt-ipv4: 172.80.80.11
       startup-config: configs/dc1/leaf1.cfg
       group: leaf
@@ -144,7 +142,7 @@ topology:
         site: dc1
         role: leaf
     leaf2dc1:
-      kind: srl
+      kind: nokia_srlinux
       mgmt-ipv4: 172.80.80.12
       startup-config: configs/dc1/leaf2.cfg
       group: leaf
@@ -152,7 +150,7 @@ topology:
         site: dc1
         role: leaf
     leaf3dc1:
-      kind: srl
+      kind: nokia_srlinux
       mgmt-ipv4: 172.80.80.13
       startup-config: configs/dc1/leaf3.cfg
       group: leaf
@@ -160,7 +158,7 @@ topology:
         site: dc1
         role: leaf
     leaf4dc1:
-      kind: srl
+      kind: nokia_srlinux
       startup-config: configs/dc1/leaf4.cfg
       mgmt-ipv4: 172.80.80.14
       group: leaf
@@ -168,7 +166,7 @@ topology:
         site: dc1
         role: leaf
     leaf1dc2:
-      kind: srl
+      kind: nokia_srlinux
       mgmt-ipv4: 172.80.80.15
       startup-config: configs/dc2/leaf1.cfg
       group: leaf
@@ -176,7 +174,7 @@ topology:
         site: dc2
         role: leaf
     leaf2dc2:
-      kind: srl
+      kind: nokia_srlinux
       mgmt-ipv4: 172.80.80.16
       startup-config: configs/dc2/leaf2.cfg
       group: leaf
