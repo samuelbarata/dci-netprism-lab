@@ -38,6 +38,12 @@ pingAll() {
     docker exec c10dc1 ping -c 10 -W 1 -6 -A 2002::10:128:1:1
 }
 
+pingVRF3() {
+    echo "pinging all VRF-3 clients"
+    docker exec c12dc1 ping -c 10 -W 1 -6 -A 2002::10:128:3:11
+    docker exec c13dc2 ping -c 10 -W 1 -6 -A 2002::10:128:3:11
+}
+
 stopAll() {
     echo "stopping all traffic"
     docker exec c3dc1 pkill iperf3
@@ -71,5 +77,10 @@ fi
 if [ $1 == "ping" ]; then
     if [ $2 == "all" ]; then
         pingAll
+    fi
+    if [ $2 == "vrf" ]; then
+        if [ $3 == "3" ]; then
+            pingVRF3
+        fi
     fi
 fi

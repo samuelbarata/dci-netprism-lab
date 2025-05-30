@@ -24,8 +24,8 @@ topology:
       image: vrnetlab/juniper_vjunos-router:23.2R1.15
     juniper_vjunosevolved:
       image: vrnetlab/juniper_vjunosevolved:23.4R2-S2.1
-    juniper_vqfx:
-      image: vrnetlab/vr-vqfx:20.2R1.10
+    # juniper_vqfx:
+    #   image: vrnetlab/vr-vqfx:20.2R1.10
 
   nodes:
     ### CORE ###
@@ -313,6 +313,39 @@ topology:
       labels:
         site: dc1
         role: server
+    c11dc1:
+      kind: linux
+      mgmt-ipv4: 172.80.80.41
+      exec:
+        - ip link set dev eth1 address 02:00:00:01:03:11
+        - ip address add 10.128.3.11/24 dev eth1
+        - ip -6 address add 2002::10:128:3:11/96 dev eth1
+      group: server
+      labels:
+        site: dc1
+        role: server
+    c12dc1:
+      kind: linux
+      mgmt-ipv4: 172.80.80.42
+      exec:
+        - ip link set dev eth1 address 02:00:00:01:03:12
+        - ip address add 10.128.3.12/24 dev eth1
+        - ip -6 address add 2002::10:128:3:12/96 dev eth1
+      group: server
+      labels:
+        site: dc1
+        role: server
+    c13dc2:
+      kind: linux
+      mgmt-ipv4: 172.80.80.43
+      exec:
+        - ip link set dev eth1 address 02:00:00:02:03:13
+        - ip address add 10.128.3.13/24 dev eth1
+        - ip -6 address add 2002::10:128:3:13/96 dev eth1
+      group: server
+      labels:
+        site: dc2
+        role: server
 
   links:
     # clients ethX (1+)
@@ -355,6 +388,8 @@ topology:
     - endpoints: ["leaf4dc1:e1-2", "c5dc1:eth1"]
     - endpoints: ["leaf1dc1:e1-2", "c10dc1:eth1"]
     - endpoints: ["leaf2dc1:e1-2", "c10dc1:eth2"]
+    - endpoints: ["leaf1dc1:e1-3", "c11dc1:eth1"]
+    - endpoints: ["leaf4dc1:e1-3", "c12dc1:eth1"]
     ## CLIENT - DCGW ##
     - endpoints: ["c6dc1:eth1", "dc1dcgw1:eth4"]
 
@@ -367,6 +402,7 @@ topology:
     ## CLIENT - LEAF ##
     - endpoints: ["leaf1dc2:e1-1", "c8dc2:eth1"]
     - endpoints: ["leaf2dc2:e1-1", "c9dc2:eth1"]
+    - endpoints: ["leaf2dc2:e1-3", "c13dc2:eth1"]
 
     ##############  PE 3 ##############
     - endpoints: ["c7:eth1", "pe30:eth3"]
