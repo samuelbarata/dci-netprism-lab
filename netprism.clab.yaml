@@ -97,13 +97,6 @@ topology:
       labels:
         site: wan1
         role: pe
-    pe30:
-      kind: nokia_sros
-      mgmt-ipv4: 172.80.80.54
-      type: sr-1
-      labels:
-        site: wan2
-        role: pe
     # ### SPINES ###
     spine1dc1:
       kind: nokia_srlinux
@@ -263,15 +256,6 @@ topology:
       labels:
         site: dc1
         role: server
-    c7:
-      kind: linux
-      mgmt-ipv4: 172.80.80.37
-      exec:
-        - ip address add 10.128.3.7/24 dev eth1
-        - ip -6 address add 2002::10:128:3:7/96 dev eth1
-      group: server
-      labels:
-        role: server
     c8dc2:
       kind: linux
       mgmt-ipv4: 172.80.80.38
@@ -372,7 +356,6 @@ topology:
     - endpoints: ["dc1dcgw1:eth3", "provider2:eth3"]
     - endpoints: ["dc1dcgw2:eth3", "provider3:eth3"]
     - endpoints: ["dc2dcgw1:eth3", "provider5:eth3"]
-    - endpoints: ["pe30:eth1", "provider4:eth3"]
 
     ##############  DC 1 ##############
     ## DCGW - SPINE ##
@@ -412,6 +395,3 @@ topology:
     - endpoints: ["leaf1dc2:e1-1", "c8dc2:eth1"]
     - endpoints: ["leaf2dc2:e1-1", "c9dc2:eth1"]
     - endpoints: ["leaf2dc2:e1-3", "c13dc2:eth1"]
-
-    ##############  PE 3 ##############
-    - endpoints: ["c7:eth1", "pe30:eth3"]
