@@ -5,7 +5,7 @@
 
 ## Fabric
 
-All routers in the Fabric are running **SR OS**.
+All routers in the Fabric are running **SR Linux**.
 
 - Clients connected via **orange** links are part of **MAC-VRF 1**.
 - Clients connected via **red** links are part of **MAC-VRF 2**.
