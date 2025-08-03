@@ -35,7 +35,7 @@ topology:
       mgmt-ipv4: 172.80.80.91
       startup-config: configs/provider/provider1.partial.cfg
       labels:
-        site: provider
+        site: wan1
         role: core
     provider2:
       kind: nokia_sros
@@ -43,7 +43,7 @@ topology:
       mgmt-ipv4: 172.80.80.92
       startup-config: configs/provider/provider2.partial.cfg
       labels:
-        site: provider
+        site: wan1
         role: core
     provider3:
       kind: nokia_sros
@@ -51,7 +51,7 @@ topology:
       mgmt-ipv4: 172.80.80.93
       startup-config: configs/provider/provider3.partial.cfg
       labels:
-        site: provider
+        site: wan1
         role: core
     provider4:
       kind: nokia_sros
@@ -59,7 +59,7 @@ topology:
       mgmt-ipv4: 172.80.80.94
       startup-config: configs/provider/provider4.partial.cfg
       labels:
-        site: provider
+        site: wan1
         role: core
     provider5:
       kind: nokia_sros
@@ -67,7 +67,7 @@ topology:
       mgmt-ipv4: 172.80.80.95
       startup-config: configs/provider/provider5.partial.cfg
       labels:
-        site: provider
+        site: wan1
         role: core
     ### PE ###
     dc1dcgw1:
@@ -78,7 +78,7 @@ topology:
       type: sr-1
       labels:
         site: wan1
-        role: pe
+        role: dcgw
     dc1dcgw2:
       kind: nokia_sros
       group: pe
@@ -87,7 +87,7 @@ topology:
       type: sr-1
       labels:
         site: wan1
-        role: pe
+        role: dcgw
     dc2dcgw1:
       kind: nokia_sros
       group: pe
@@ -96,7 +96,7 @@ topology:
       type: sr-1
       labels:
         site: wan1
-        role: pe
+        role: dcgw
     # ### SPINES ###
     spine1dc1:
       kind: nokia_srlinux
