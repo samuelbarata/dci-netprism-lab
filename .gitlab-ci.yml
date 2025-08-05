@@ -1,0 +1,23 @@
+stages:
+- deploy
+
+Push to Github:
+  stage: deploy
+  image: samuelbarata/infinity-gauntlet:latest
+  only:
+    - master
+  variables:
+    SSH_KEY: /root/.ssh/id_rsa
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo ${SSH_PRIVATE_KEY_b64} | base64 -d > $SSH_KEY
+    - chmod 400 $SSH_KEY
+    - ssh-agent bash -c "ssh-add $SSH_KEY"
+    - ssh-keyscan -H github.com >> /root/.ssh/known_hosts
+  script:
+    - |
+      if ! git remote | grep -q github; then
+        git remote add github git@github.com:samuelbarata/dci-netprism-lab.git
+      fi
+    - git fetch github
+    - git push github HEAD:$CI_COMMIT_REF_NAME
