@@ -1,47 +1,74 @@
-provider:
-  hostname: provider
+provider1:
+  hostname: provider1
   platform: sros
   groups:
   - sros
   data:
-    site: provider
+    site: wan1
     role: core
 
-dc1pe1:
-  hostname: dc1pe1
+provider2:
+  hostname: provider2
   platform: sros
   groups:
   - sros
   data:
     site: wan1
-    role: pe
+    role: core
 
-dc1pe2:
-  hostname: dc1pe2
+provider3:
+  hostname: provider3
   platform: sros
   groups:
   - sros
   data:
     site: wan1
-    role: pe
+    role: core
 
-dc2pe1:
-  hostname: dc2pe1
+provider4:
+  hostname: provider4
   platform: sros
   groups:
   - sros
   data:
     site: wan1
-    role: pe
+    role: core
 
-pe30:
-  hostname: pe30
+provider5:
+  hostname: provider5
   platform: sros
   groups:
   - sros
   data:
-    site: wan2
-    role: pe
+    site: wan1
+    role: core
+
+dc1dcgw1:
+  hostname: dc1dcgw1
+  platform: sros
+  groups:
+  - sros
+  data:
+    site: wan1
+    role: dcgw
+
+dc1dcgw2:
+  hostname: dc1dcgw2
+  platform: sros
+  groups:
+  - sros
+  data:
+    site: wan1
+    role: dcgw
+
+dc2dcgw1:
+  hostname: dc2dcgw1
+  platform: sros
+  groups:
+  - sros
+  data:
+    site: wan1
+    role: dcgw
 
 spine1dc1:
   hostname: spine1dc1
@@ -99,9 +126,9 @@ leaf3dc1:
 
 leaf4dc1:
   hostname: leaf4dc1
-  platform: junos
+  platform: srlinux
   groups:
-  - junos
+  - srl
   data:
     site: dc1
     role: leaf

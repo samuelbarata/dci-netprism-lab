@@ -2,14 +2,13 @@
 inventory:
     plugin: YAMLInventory
     options:
-        host_file: "/home/samuelbarata/labs/dci-netprism-labnornir/nornir/hosts.yaml"
-        group_file: "/home/samuelbarata/labs/dci-netprism-labnornir/nornir/groups.yaml"
-        defaults_file: "/home/samuelbarata/labs/dci-netprism-labnornir/nornir/defaults.yaml"
+        host_file: "/nornir/hosts.yaml"
+        group_file: "/nornir/groups.yaml"
+        defaults_file: "/nornir/defaults.yaml"
 runner:
     # plugin: serial
-    plugin: runner
-        plugin: threaded
-        option":
-            num_workers: 20
+    plugin: threaded
+    options:
+        num_workers: 40
 user_defined:
     intent_dir: "./intent"
