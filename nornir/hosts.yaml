@@ -49,7 +49,9 @@ dc1dcgw1:
   groups:
   - sros
   data:
-    site: wan1
+    site: 
+      - wan1
+      - dc1
     role: dcgw
 
 dc1dcgw2:
@@ -58,7 +60,9 @@ dc1dcgw2:
   groups:
   - sros
   data:
-    site: wan1
+    site: 
+      - wan1
+      - dc1
     role: dcgw
 
 dc2dcgw1:
@@ -67,7 +71,9 @@ dc2dcgw1:
   groups:
   - sros
   data:
-    site: wan1
+    site: 
+      - wan1
+      - dc2
     role: dcgw
 
 spine1dc1:
