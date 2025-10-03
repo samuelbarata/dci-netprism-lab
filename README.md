@@ -10,6 +10,7 @@ All routers in the Fabric are running **SR Linux**.
 - Clients connected via **orange** links are part of **MAC-VRF 1**.
 - Clients connected via **red** links are part of **MAC-VRF 2**.
 - Clients on **green** links are **not assigned** to any network instance.
+- Clients MAC address follow the format ``02:00:00:<dc>:<vrf>:<id>`
 
 Router interconnects within the Fabric are established using **eBGP**.
 
