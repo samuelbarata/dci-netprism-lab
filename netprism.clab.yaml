@@ -12,7 +12,7 @@ topology:
       license: /opt/nokia/sros/license-sros_R24.txt
     nokia_srlinux:
       image: ghcr.io/nokia/srlinux:24.10.1
-      type: ixrd2l
+      type: ixr-d2l
     linux:
       image: samuelbarata/network-multitool:latest
       binds:
@@ -100,7 +100,7 @@ topology:
     # ### SPINES ###
     spine1dc1:
       kind: nokia_srlinux
-      type: ixrd3l
+      type: ixr-d3l
       group: spine
       mgmt-ipv4: 172.80.80.21
       startup-config: configs/dc1/spine1.cfg
@@ -109,7 +109,7 @@ topology:
         role: spine
     spine2dc1:
       kind: nokia_srlinux
-      type: ixrd3l
+      type: ixr-d3l
       group: spine
       mgmt-ipv4: 172.80.80.22
       startup-config: configs/dc1/spine2.cfg
@@ -118,7 +118,7 @@ topology:
         role: spine
     spine1dc2:
       kind: nokia_srlinux
-      type: ixrd3l
+      type: ixr-d3l
       group: spine
       mgmt-ipv4: 172.80.80.23
       startup-config: configs/dc2/spine1.cfg
